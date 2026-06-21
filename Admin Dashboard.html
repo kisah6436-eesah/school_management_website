@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard -  School management</title>
+  <link rel="stylesheet" href="styles.css"
+
+<root {
+  /* Light theme */
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --text: #0f1724;
+  --muted: #475569;
+  --primary: #006b6b;
+  --primary-strong: #004e4e;
+  --accent: #06b6d4;
+  --border: #e6eef0;
+  --card-shadow: rgba(15, 23, 42, 0.04);
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 107, 107, 0.15);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f0f2 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.site-nav a,
+.footer-nav a {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--muted);
+}
+
+.site-header .site-nav a {
+  color: white;
+  opacity: 0.9;
+  transition: opacity 200ms ease;
+}
+
+.site-header .site-nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  opacity: 1;
+}
+
+.site-nav a:hover,
+.footer-nav a:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary-dark);
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 1.55rem;
+  cursor: pointer;
+}
+
+.hero {
+  background: linear-gradient(180deg, #eef4ff 0%, #ffffff 100%);
+  padding: 4rem 0 3rem;
+}
+
+.hero-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.hero p {
+  max-width: 50rem;
+  color: var(--muted);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+}
+
+.overview,
+.highlights,
+.team-section,
+.page-content,
+.event-grid,
+.report-section,
+.form-wrapper {
+  padding: 3rem 0;
+}
+
+.grid-2,
+.grid-3,
+.grid-4,
+.staff-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card,
+.report-card,
+.staff-card,
+.event-card,
+.form-card,
+.contact-details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px var(--card-shadow);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+/* Dark theme overrides */
+body.dark {
+  --bg: #0b1220;
+  --surface: #0f1724;
+  --text: #e6f0f2;
+  --muted: #94a3b8;
+  --primary: #06b6d4;
+  --primary-strong: #0891b2;
+  --accent: #7dd3fc;
+  --border: rgba(255,255,255,0.06);
+  --card-shadow: rgba(2,6,23,0.6);
+}
+
+.card h3,
+.report-card h3,
+.event-card h3,
+.staff-card h3 {
+  margin-top: 0;
+}
+
+.team-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.team-card {
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.team-card strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--primary-brown);
+}
+
+.team-card span {
+  color: var(--muted);
+}
+
+.page-header {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.split-section {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.report-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.report-section p,
+.testimonial-section p,
+.contact-details p,
+.event-card p,
+.staff-card p,
+.form-row label,
+.form-row input,
+.form-row select,
+.form-row textarea {
+  color: var(--muted);
+}
+
+.form-wrapper {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.6fr 1fr;
+  align-items: start;
+}
+
+.form-card {
+  padding: 2rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.95rem 1rem;
+  font: inherit;
+}
+
+.form-row input:invalid,
+.form-row select:invalid,
+.form-row textarea:invalid {
+  border-color: #f87171;
+}
+
+.form-feedback {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.contact-details {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.event-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.staff-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .grid-2,
+  .grid-3,
+  .split-section,
+  .form-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header {
+    padding: 0 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .container {
+    width: min(100%, calc(100% - 1rem));
+  }
+}
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-logo">📚</div>
+        <span>School Manager</span>
+      </a>
+      <button class="menu-toggle" aria-label="Open navigation">☰</button>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="admissions.html">Admission</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <a href="Admin Dashboard.html">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <section class="page-header">
+      <h1>Admin Dashboard</h1>
+      <p>Monitor school operations, review key metrics, and manage principal responsibilities from one place.</p>
+    </section>
+
+    <section class="overview">
+      <div class="grid-2">
+        <div class="card">
+          <h2>School Overview</h2>
+          <p>Use this dashboard to track enrolment, attendance, announcements, and overall school performance.</p>
+          <div class="grid-2" style="margin-top: 1rem; gap: 1rem;">
+            <div class="report-card">
+              <h3>Enrollment</h3>
+              <p>500 students registered for the current academic year.</p>
+            </div>
+            <div class="report-card">
+              <h3>Attendance</h3>
+              <p>96% average attendance across all classes this week.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Quick Actions</h2>
+          <ul>
+            <li>Review the latest teacher schedules.</li>
+            <li>Approve any pending announcements.</li>
+            <li>Check compliance and safety inspections.</li>
+            <li>Prepare the next staff meeting agenda.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <h2>Admin Widgets</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Staff Updates</h3>
+          <p>3 new support staff requests, 5 pending leave approvals, and the next teacher coaching session is scheduled for Friday.</p>
+        </div>
+        <div class="card">
+          <h3>Admissions Status</h3>
+          <p>Current applications: 78. Processing waiting list, and reviewing the latest admission documents.</p>
+        </div>
+        <div class="card">
+          <h3>Announcements</h3>
+          <p>New bulletin: Parent-teacher conference on May 20. School assembly planned for next Monday.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <h2>Principal Roles</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Academic Leadership</h3>
+          <p>Guide curriculum implementation, support teachers, and ensure high-quality learning across all subjects.</p>
+        </div>
+        <div class="card">
+          <h3>Staff Management</h3>
+          <p>Lead recruitment, performance reviews, mentorship, and create a supportive work environment.</p>
+        </div>
+        <div class="card">
+          <h3>Student Wellbeing</h3>
+          <p>Maintain student safety, support social-emotional growth, and handle behaviour with fairness and care.</p>
+        </div>
+        <div class="card">
+          <h3>Parent Communication</h3>
+          <p>Keep families informed, resolve concerns, and strengthen school-home partnerships.</p>
+        </div>
+        <div class="card">
+          <h3>School Planning</h3>
+          <p>Manage school improvement plans, strategic goals, and daily operations smoothly.</p>
+        </div>
+        <div class="card">
+          <h3>Compliance & Safety</h3>
+          <p>Ensure policy compliance, conduct inspections, and maintain a safe teaching and learning environment.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <h2>Contributors</h2>
+      <div class="grid-4 team-grid">
+        <div class="team-card">
+          <img src="images/contributors/abdurrahman.jpg" alt="Abdurrahman Salisu Lawan" class="team-photo">
+          <strong>Abdurrahman Salisu Lawan</strong>
+          <span>Lead Designer</span>
+        </div>
+        <div class="team-card">
+          <img src="images/contributors/What.jpg" alt="Ishaq Musa Yakubu" class="team-photo">
+          <strong>Ishaq Musa Yakubu</strong>
+          <span>Frontend Developer</span>
+        </div>
+        <div class="team-card">
+          <img src="images/contributors/chat-photo.jpg" alt="Isah Kabir" class="team-photo">
+      <strong>Isah Kabir</strong>
+          <span>Backend Developer</span>
+        </div>
+        <div class="team-card">
+          <img src="images/contributors/usman.jpg" alt="Usman Ahmad Akilu" class="team-photo">
+          <strong>Usman Ahmad Akilu</strong>
+          <span>QA & DevOps</span>
+        </div>
+        <div class="team-card">
+          <img src="images/contributors/nasiru.jpg" alt="Nasiru Aliyu Shekare" class="team-photo">
+          <strong>Nasiru Aliyu Shekare</strong>
+          <span>Content & Docs</span>
+        </div>
+      </div>
+      <p style="margin-top:0.75rem;color:var(--muted);">Place contributor images in <strong>images/contributors/</strong> with the filenames used above, or update the src attributes.</p>
+    </section>
+
+    <section class="report-section">
+      <div class="grid-2">
+        <div class="report-card">
+          <h3>Monthly Notes</h3>
+          <p>Schedule weekly leadership meetings, review student progress reports, and confirm upcoming campus events.</p>
+        </div>
+        <div class="report-card">
+          <h3>Principal Priorities</h3>
+          <ul>
+            <li>Support teacher development programs.</li>
+            <li>Improve student attendance and engagement.</li>
+            <li>Review budget allocation for school resources.</li>
+            <li>Plan parent-teacher conferences.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 School Management. Admin dashboard for school leadership and planning.</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Management</title>
+  <link rel="stylesheet" href="styles.css">
+   
+
+<body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-strong);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.site-nav a,
+.footer-nav a {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--muted);
+}
+
+.site-nav a:hover,
+.footer-nav a:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary-dark);
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 1.55rem;
+  cursor: pointer;
+}
+
+.hero {
+  background: linear-gradient(180deg, #eef4ff 0%, #ffffff 100%);
+  padding: 4rem 0 3rem;
+}
+
+.hero-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.hero p {
+  max-width: 50rem;
+  color: var(--muted);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+}
+
+.overview,
+.highlights,
+.team-section,
+.page-content,
+.event-grid,
+.report-section,
+.form-wrapper {
+  padding: 3rem 0;
+}
+
+.grid-2,
+.grid-3,
+.grid-4,
+.staff-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card,
+.report-card,
+.staff-card,
+.event-card,
+.form-card,
+.contact-details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px var(--card-shadow);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+/* Dark theme overrides */
+body.dark {
+  --bg: #0b1220;
+  --surface: #0f1724;
+  --text: #e6f0f2;
+  --muted: #94a3b8;
+  --primary: #06b6d4;
+  --primary-strong: #0891b2;
+  --accent: #7dd3fc;
+  --border: rgba(255,255,255,0.06);
+  --card-shadow: rgba(2,6,23,0.6);
+}
+
+.card h3,
+.report-card h3,
+.event-card h3,
+.staff-card h3 {
+  margin-top: 0;
+}
+
+.team-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.team-card {
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.team-card strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--primary-dark);
+}
+
+.team-card span {
+  color: var(--muted);
+}
+
+.page-header {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.split-section {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.report-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.report-section p,
+.testimonial-section p,
+.contact-details p,
+.event-card p,
+.staff-card p,
+.form-row label,
+.form-row input,
+.form-row select,
+.form-row textarea {
+  color: var(--muted);
+}
+
+.form-wrapper {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.6fr 1fr;
+  align-items: start;
+}
+
+.form-card {
+  padding: 2rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.95rem 1rem;
+  font: inherit;
+}
+
+.form-row input:invalid,
+.form-row select:invalid,
+.form-row textarea:invalid {
+  border-color: #f87171;
+}
+
+.form-feedback {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.contact-details {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.event-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.staff-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .grid-2,
+  .grid-3,
+  .split-section,
+  .form-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header {
+    padding: 0 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .container {
+    width: min(100%, calc(100% - 1rem));
+  }
+}
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">School Management</a>
+      <button class="menu-toggle" aria-label="Open navigation">☰</button>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="admissions.html">Admission</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <section class="page-header">
+      <h1>About Our School</h1>
+      <p>Learn about our mission, values, and the community behind School Management.</p>
+    </section>
+
+    <section class="split-section">
+      <article>
+        <h2>Our Mission</h2>
+        <p>We prepare students for success through high-quality teaching, strong discipline, and constant engagement between staff and families.</p>
+      </article>
+      <article>
+        <h2>Our Values</h2>
+        <ul>
+          <li>Respect</li>
+          <li>Discipline</li>
+          <li>Innovation</li>
+          <li>Community</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="report-section">
+      <h2>Documents & Reports</h2>
+      <p>Our school maintains clear documentation and regular reporting so families can follow progress easily.</p>
+      <div class="report-list">
+        <div class="report-card">
+          <h3>Enrollment Report</h3>
+          <p>Summary of student enrollment, attendance, and performance trends for the current year.</p>
+        </div>
+        <div class="report-card">
+          <h3>Policy Documents</h3>
+          <p>School guidelines for safety, admission, and student conduct are reviewed annually.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial-section">
+      <h2>Why Families Choose Us</h2>
+      <p>We combine skilled teachers, modern facilities, and warm communication to create a safe, nurturing academic environment.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 School Management. Designed by the group members.</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

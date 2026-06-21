@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - School Management</title>
+  <link rel="stylesheet" href="styles.css">
+ <body>
+  
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">School Management</a>
+      <button class="menu-toggle" aria-label="Open navigation">☰</button>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="admissions.html">Admission</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <section class="page-header">
+      <h1>Login</h1>
+      <p>Use the credentials below to sign in and access the school dashboard experience.</p>
+    </section>
+
+    <section class="form-wrapper">
+      <form id="login-form" class="form-card" novalidate>
+        <div class="form-row">
+          <label for="userid">User ID</label>
+          <input type="text" id="userid" name="userid" required>
+        </div>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button class="button" type="submit">Sign In</button>
+        <p class="form-feedback" id="login-feedbaqck"></p>
+      </form>
+
+      <div class="contact-details">
+        <h2>Login Details</h2>
+        <p>User ID: <strong>********</strong></p>
+        <p>Password: <strong>*******</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 School Management. Login is for authorized users only.</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="staff.html">Staff</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
